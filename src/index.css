@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #1e1e1e;
+  color: #c8c8c8;
+  font-family: system-ui, 'Segoe UI', sans-serif;
+  min-height: 100svh;
+}
+
+/* ── Splash ─────────────────────────────────── */
+.splash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100svh;
+  gap: 32px;
+}
+
+.press-btn {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 16px;
+  color: #c8c8c8;
+  background: transparent;
+  border: 2px solid #888;
+  border-radius: 999px;
+  padding: 10px 36px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.press-btn:hover {
+  border-color: #f0f0f0;
+  color: #f0f0f0;
+}
+
+/* ── Header ─────────────────────────────────── */
+.site-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 0 8px;
+}
+
+.chalk-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 48px;
+  color: #f0f0f0;
+  margin: 0;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.site-header--large .chalk-title { font-size: 56px; }
+
+.mascot {
+  width: 120px;
+  height: auto;
+}
+.site-header--large .mascot { width: 400px; }
+
+/* ── Home page ──────────────────────────────── */
+.home {
+  width: 100%;
+  padding: 0 48px 80px;
+  min-height: 100svh;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #555;
+  margin: 0 0 36px;
+}
+
+/* ── Frame section ──────────────────────────── */
+.frame-section {
+  margin-bottom: 8px;
+}
+
+.text-block {
+  background: #D9D9D9;
+  border-radius: 10px;
+  padding: 18px 22px;
+  line-height: 1.65;
+  color: #2C2C2C;
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.frame-label {
+  font-size: 12px;
+  color: #666;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-align: left;
+  margin: 0 0 10px;
+}
+
+.img-placeholder {
+  background: #2e2e2e;
+  border-radius: 10px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  font-size: 13px;
+  margin-bottom: 16px;
+  border: 1px dashed #444;
+}
+
+.frame-divider {
+  border: none;
+  border-top: 1px solid #444;
+  margin: 28px 0;
+}
+
+/* ── Projects carousel ──────────────────────── */
+.projects-section {
+  margin-top: 8px;
+}
+
+.projects-title {
+  font-size: 26px;
+  font-weight: 400;
+  color: #f0f0f0;
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.carousel-arrow {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 8px 4px;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+.carousel-arrow:hover { color: #f0f0f0; }
+.carousel-arrow:disabled { color: #3a3a3a; cursor: default; }
+
+.carousel-track {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.project-card {
+  flex: 1;
+  min-width: 0;
+  aspect-ratio: 3 / 4;
+  background: #eae7f0;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #bbb;
+  font-size: 12px;
+}

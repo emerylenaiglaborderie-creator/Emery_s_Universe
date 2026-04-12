@@ -1,0 +1,53 @@
+import { useState } from 'react'
+
+const PROJECTS = [
+  { id: 1, title: 'Projet 1' },
+  { id: 2, title: 'Projet 2' },
+  { id: 3, title: 'Projet 3' },
+  { id: 4, title: 'Projet 4' },
+  { id: 5, title: 'Projet 5' },
+]
+
+const VISIBLE = 3
+
+export default function ProjectsCarousel() {
+  const [start, setStart] = useState(0)
+
+  const canPrev = start > 0
+  const canNext = start + VISIBLE < PROJECTS.length
+  const visible = PROJECTS.slice(start, start + VISIBLE)
+
+  return (
+    <section className="projects-section">
+      <h2 className="projects-title">Mes Projets</h2>
+
+      <div className="carousel">
+        <button
+          className="carousel-arrow"
+          onClick={() => setStart(s => s - 1)}
+          disabled={!canPrev}
+          aria-label="Précédent"
+        >
+          &#9664;
+        </button>
+
+        <div className="carousel-track">
+          {visible.map(p => (
+            <div key={p.id} className="project-card">
+              {p.title}
+            </div>
+          ))}
+        </div>
+
+        <button
+          className="carousel-arrow"
+          onClick={() => setStart(s => s + 1)}
+          disabled={!canNext}
+          aria-label="Suivant"
+        >
+          &#9654;
+        </button>
+      </div>
+    </section>
+  )
+}
