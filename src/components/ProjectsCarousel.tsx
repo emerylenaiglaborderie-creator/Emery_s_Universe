@@ -19,7 +19,6 @@ export default function ProjectsCarousel() {
 
   return (
     <section className="projects-section">
-      <h2 className="projects-title">Mes Projets</h2>
 
       <div className="carousel">
         <button

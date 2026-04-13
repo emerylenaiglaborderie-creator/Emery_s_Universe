@@ -7,14 +7,12 @@ const FRAMES = [
   {
     id: 1,
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
-    imgAlt: 'Aperçu projet 1',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.'
   },
   {
     id: 2,
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
-    imgAlt: 'Aperçu projet 2',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.'
   },
 ]
 
@@ -31,17 +29,16 @@ export default function Home() {
         </nav>
       </Header>
       <hr className="divider" />
-
+      <ProjectsCarousel />
+      <hr className="divider" />
       {FRAMES.map((f, i) => (
         <FrameSection
           key={f.id}
           description={f.description}
-          imgAlt={f.imgAlt}
           last={i === FRAMES.length - 1}
         />
       ))}
 
-      <ProjectsCarousel />
     </div>
   )
 }
