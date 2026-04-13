@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -23,7 +23,7 @@ body {
 }
 
 .press-btn {
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Climate Crisis', cursive;
   font-size: 16px;
   color: #c8c8c8;
   background: transparent;
@@ -49,18 +49,18 @@ body {
 }
 
 .chalk-title {
-  font-family: 'Permanent Marker', cursive;
-  font-size: 48px;
+  font-family: 'Climate Crisis', cursive;
+  font-size: 56px;
   color: #f0f0f0;
   margin: 0;
-  letter-spacing: 3px;
+  letter-spacing: 15px;
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
 }
 
 .site-header--large .chalk-title { font-size: 56px; }
 
 .mascot {
-  width: 120px;
+  width: 250px;
   height: auto;
 }
 .site-header--large .mascot { width: 400px; }
@@ -180,6 +180,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: 20px;
 }
 
 .carousel-arrow {
@@ -249,9 +250,9 @@ body {
 .filter-btn {
   font-family: 'Permanent Marker', cursive;
   font-size: 13px;
-  color: #888;
-  background: transparent;
-  border: 2px solid #555;
+  color: #c9a8d8;
+  border: 1px solid #6a4a7a;
+  background: rgba(201, 168, 216, 0.07);
   border-radius: 999px;
   padding: 6px 20px;
   cursor: pointer;
@@ -494,4 +495,270 @@ body {
   border: 1px solid #3a3a3a;
   border-radius: 10px;
   background: #2a2a2a;
+}
+
+/* ── CV page ─────────────────────────────────── */
+.cv-page {
+  width: 100%;
+  padding: 0 48px 80px;
+  min-height: 100svh;
+}
+
+/* Mobile tabs (hidden on desktop) */
+.cv-mobile-tabs {
+  display: none;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.cv-tab-btn {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 14px;
+  color: #888;
+  background: transparent;
+  border: 2px solid #555;
+  border-radius: 999px;
+  padding: 8px 28px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.cv-tab-btn--active {
+  border-color: #f0f0f0;
+  color: #f0f0f0;
+}
+
+/* Two-column layout */
+.cv-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Sidebar */
+.cv-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Main column */
+.cv-main {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+/* Accroche */
+.cv-accroche {
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  border-radius: 12px;
+  padding: 20px 24px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #c8c8c8;
+}
+.cv-accroche p { margin: 0 0 10px; }
+.cv-accroche p:last-child { margin: 0; }
+.cv-accroche strong { color: #f0f0f0; }
+
+/* Section */
+.cv-section { display: flex; flex-direction: column; gap: 10px; }
+
+.cv-section-title {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #888;
+  margin: 0;
+  font-weight: 400;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #3a3a3a;
+}
+.cv-section-title--main {
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: #aaa;
+}
+
+/* Skills labels */
+.cv-skills-label {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #666;
+  margin: 6px 0 4px;
+}
+
+/* Tags */
+.cv-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.cv-tag {
+  font-size: 12px;
+  border-radius: 999px;
+  padding: 3px 12px;
+  letter-spacing: 0.5px;
+}
+.cv-tag--main {
+  color: #7ecfb3;
+  border: 1px solid #3a7a64;
+  background: rgba(126, 207, 179, 0.07);
+}
+.cv-tag--base {
+  color: #aaa;
+  border: 1px solid #555;
+}
+.cv-tag--tool {
+  color: #9ab8d8;
+  border: 1px solid #3a5a78;
+  background: rgba(154, 184, 216, 0.07);
+}
+.cv-tag--soft {
+  color: #c9a8d8;
+  border: 1px solid #6a4a7a;
+  background: rgba(201, 168, 216, 0.07);
+}
+
+/* Language bars */
+.cv-langue { display: flex; flex-direction: column; gap: 5px; }
+.cv-langue-header { display: flex; justify-content: space-between; align-items: baseline; }
+.cv-langue-name { font-size: 13px; color: #d0d0d0; }
+.cv-langue-niveau { font-size: 11px; color: #777; }
+.cv-langue-bar {
+  height: 4px;
+  background: #333;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.cv-langue-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3a7a64, #7ecfb3);
+  border-radius: 999px;
+  transition: width 0.6s ease;
+}
+
+/* Misc list */
+.cv-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cv-list li {
+  font-size: 13px;
+  color: #aaa;
+  padding-left: 14px;
+  position: relative;
+}
+.cv-list li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: #555;
+}
+
+/* Timeline */
+.cv-timeline { display: flex; flex-direction: column; gap: 0; }
+
+.cv-timeline-item {
+  display: flex;
+  gap: 16px;
+  position: relative;
+  padding-bottom: 24px;
+}
+.cv-timeline-item:last-child { padding-bottom: 0; }
+
+/* Vertical line */
+.cv-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 18px;
+  bottom: 0;
+  width: 1px;
+  background: #3a3a3a;
+}
+.cv-timeline-item:last-child::before { display: none; }
+
+.cv-timeline-dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #3a7a64;
+  border: 2px solid #7ecfb3;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.cv-timeline-dot--exp {
+  background: #3a5a78;
+  border-color: #9ab8d8;
+}
+.cv-timeline-dot--project {
+  background: #6a4a7a;
+  border-color: #c9a8d8;
+}
+
+.cv-timeline-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.cv-timeline-period {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #666;
+}
+.cv-timeline-title {
+  font-size: 15px;
+  color: #f0f0f0;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cv-timeline-sub {
+  font-size: 12px;
+  color: #888;
+  font-style: italic;
+}
+.cv-timeline-desc {
+  font-size: 13px;
+  color: #aaa;
+  margin: 4px 0 0;
+  line-height: 1.55;
+}
+
+/* WIP badge */
+.cv-wip-badge {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #c9a8d8;
+  border: 1px solid #6a4a7a;
+  border-radius: 999px;
+  padding: 1px 8px;
+  font-weight: 400;
+}
+
+/* ── Responsive ─────────────────────────────── */
+@media (max-width: 700px) {
+  .cv-page { padding: 0 20px 60px; }
+
+  .cv-mobile-tabs { display: flex; }
+
+  .cv-layout { grid-template-columns: 1fr; gap: 0; }
+
+  .cv-sidebar { display: none; }
+  .cv-sidebar--visible { display: flex; }
+
+  .cv-main { display: none; }
+  .cv-main--visible { display: flex; }
 }
