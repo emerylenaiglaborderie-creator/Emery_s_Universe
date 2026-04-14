@@ -1,22 +1,21 @@
+import { useState } from 'react'
+
 interface FrameSectionProps {
+  title: string
   description: string
   last?: boolean
 }
 
-export default function FrameSection({description, last = false }: FrameSectionProps) {
+export default function FrameSection({ title, description, last = false }: FrameSectionProps) {
+  const [open, setOpen] = useState(false)
+
   return (
     <section className="frame-section">
-      <div className="text-block">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
+      <div className="frame-title" onClick={() => setOpen(o => !o)}>
+        <span>{title}</span>
+        <span className={`frame-arrow${open ? ' frame-arrow--open' : ''}`}>▸</span>
       </div>
-
-      <div className="text-block">{description}</div>
-
+      {open && <div className="text-block">{description}</div>}
       {!last && <hr className="frame-divider" />}
     </section>
   )
