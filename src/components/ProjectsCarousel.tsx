@@ -1,7 +1,8 @@
 import { useState } from 'react'
+import fateFactoryThumb from '../assets/fate-factory-thumb.jpg'
 
 const PROJECTS = [
-  { id: 1, title: 'Projet 1' },
+  { id: 1, title: 'Projet 1', image: fateFactoryThumb },
   { id: 2, title: 'Projet 2' },
   { id: 3, title: 'Projet 3' },
   { id: 4, title: 'Projet 4' },
@@ -33,7 +34,7 @@ export default function ProjectsCarousel() {
         <div className="carousel-track">
           {visible.map(p => (
             <div key={p.id} className="project-card">
-              {p.title}
+              {p.image && <img src={p.image} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
             </div>
           ))}
         </div>
