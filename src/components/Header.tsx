@@ -1,5 +1,5 @@
 import mascot from '../assets/triangle.png'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 interface HeaderProps {
   large?: boolean
