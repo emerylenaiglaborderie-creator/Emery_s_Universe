@@ -3,16 +3,18 @@ import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import ProjectModal from '../components/ProjectModal'
 import type { Project, Epreuve, Categorie } from '../types/project'
+import fateFactoryThumb from '../assets/fate-factory-thumb.jpg'
 
 const PROJECTS: Project[] = [
   {
     id: 1,
-    title: 'Projet 1',
-    description: 'Description du projet 1.',
+    title: 'Fate Factory',
+    image: fateFactoryThumb,
+    description: 'Mon premier projet de site web, codé en 2025. Une mécanique simple, mais interactive.',
     epreuve: 'E5',
-    categorie: 'BTS SIO',
-    stack: ['React'],
-    githubUrl: '',
+    categorie: 'Projets Personnels',
+    stack: ['HTML', 'CSS', 'JS'],
+    githubUrl: 'https://emerylenaiglaborderie-creator.github.io/Fate-Factory/',
     pdfUrl: '',
   },
   {
@@ -113,7 +115,9 @@ export default function Projets() {
         <div className="projets-grid">
           {filtered.map(p => (
             <div key={p.id} className="projet-card" onClick={() => setSelected(p)}>
-              <div className="projet-card-img" />
+              <div className="projet-card-img">
+                {p.image && <img src={p.image} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
+              </div>
               <div className="projet-card-body">
                 <div className="projet-card-tags">
                   {p.epreuve && <span className="projet-tag-epreuve">{p.epreuve}</span>}
