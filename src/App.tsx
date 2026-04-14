@@ -6,7 +6,7 @@ import Cv from './pages/Cv'
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Emery_s_Universe/">
       <Routes>
         <Route path="/" element={<Splash />} />
         <Route path="/home" element={<Home />} />
