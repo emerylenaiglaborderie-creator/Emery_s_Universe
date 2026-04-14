@@ -81,7 +81,7 @@ body {
 .navbar li {
   flex: 1;
   text-align: center;
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Climate Crisis', cursive;
   font-size: 20px;
   color: #c8c8c8;
   border: 2px solid #888;
@@ -248,7 +248,7 @@ body {
 }
 
 .filter-btn-epreuve {
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Climate Crisis', cursive;
   font-size: 13px;
   color: #c9a8d8;
   border: 1px solid #6a4a7a;
@@ -261,7 +261,7 @@ body {
 }
 
 .filter-btn-categorie {
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Climate Crisis', cursive;
   font-size: 13px;
   color: #9ab8d8;
   border: 1px solid #3a5a78;
@@ -458,7 +458,7 @@ body {
 .modal-github img { width: 24px; height: 24px; }
 
 .modal-github-placeholder {
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Climate Crisis', cursive;
   font-size: 14px;
   border: 2px solid #555;
   border-radius: 999px;
@@ -541,7 +541,7 @@ body {
 }
 
 .cv-tab-btn {
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Climate Crisis', cursive;
   font-size: 14px;
   color: #888;
   background: transparent;
