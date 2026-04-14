@@ -87,7 +87,7 @@ export default function Projets() {
           {EPREUVES.map(e => (
             <button
               key={e}
-              className={`filter-btn${filterEpreuve === e ? ' filter-btn--active' : ''}`}
+              className={`filter-btn-epreuve${filterEpreuve === e ? ' filter-btn--active' : ''}`}
               onClick={() => setFilterEpreuve(filterEpreuve === e ? null : e)}
             >
               {e}
@@ -98,7 +98,7 @@ export default function Projets() {
           {CATEGORIES.map(c => (
             <button
               key={c}
-              className={`filter-btn${filterCategorie === c ? ' filter-btn--active' : ''}`}
+              className={`filter-btn-categorie${filterCategorie === c ? ' filter-btn--active' : ''}`}
               onClick={() => setFilterCategorie(filterCategorie === c ? null : c)}
             >
               {c}
@@ -116,8 +116,8 @@ export default function Projets() {
               <div className="projet-card-img" />
               <div className="projet-card-body">
                 <div className="projet-card-tags">
-                  {p.epreuve && <span className="projet-tag">{p.epreuve}</span>}
-                  <span className="projet-tag">{p.categorie}</span>
+                  {p.epreuve && <span className="projet-tag-epreuve">{p.epreuve}</span>}
+                  <span className="projet-tag-categorie">{p.categorie}</span>
                 </div>
                 <h3 className="projet-card-title">{p.title}</h3>
                 <p className="projet-card-desc">{p.description}</p>
