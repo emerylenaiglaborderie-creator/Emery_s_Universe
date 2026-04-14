@@ -131,9 +131,30 @@ body {
   line-height: 1.65;
   color: #2C2C2C;
   text-align: left;
-  font-size: 14px;
+  font-size: 30px;
   margin-bottom: 16px;
 }
+
+.frame-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 50px;
+  color: #f0f0f0;
+  cursor: pointer;
+  padding: 12px 0;
+  user-select: none;
+  font-family: 'Climate Crisis', Arial, Helvetica, sans-serif;
+  letter-spacing: 5px;
+}
+.frame-title:hover { color: #c8c8c8; }
+
+.frame-arrow {
+  font-size: 16px;
+  color: #888;
+  transition: transform 0.2s;
+}
+.frame-arrow--open { transform: rotate(90deg); }
 
 .frame-label {
   font-size: 12px;
@@ -206,7 +227,7 @@ body {
 .project-card {
   flex: 1;
   min-width: 0;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 5 / 3;
   background: #eae7f0;
   border-radius: 14px;
   display: flex;
