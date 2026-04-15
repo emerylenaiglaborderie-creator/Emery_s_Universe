@@ -21,17 +21,19 @@ const FRAMES = [
 export default function Home() {
   return (
     <div className="home">
-      <Header>
-        <nav className="navbar">
-          <ul>
-            <li><NavLink to="/home">Présentation</NavLink></li>
-            <li><NavLink to="/projets">Mes projets</NavLink></li>
-            <li><NavLink to="/cv">Mon CV</NavLink></li>
-          </ul>
-        </nav>
-      </Header>
-      <hr className="divider" />
-      <ProjectsCarousel />
+      <div className="home-fold">
+        <Header>
+          <nav className="navbar">
+            <ul>
+              <li><NavLink to="/home">Présentation</NavLink></li>
+              <li><NavLink to="/projets">Mes projets</NavLink></li>
+              <li><NavLink to="/cv">Mon CV</NavLink></li>
+            </ul>
+          </nav>
+        </Header>
+        <hr className="divider" />
+        <ProjectsCarousel />
+      </div>
       <hr className="divider" />
       {FRAMES.map((f, i) => (
         <FrameSection

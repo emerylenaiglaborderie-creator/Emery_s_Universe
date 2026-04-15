@@ -61,7 +61,7 @@ body {
 .site-header--large .chalk-title { font-size: 56px; }
 
 .mascot {
-  width: 250px;
+  width: 150px;
   height: auto;
 }
 .site-header--large .mascot { width: 400px; }
@@ -118,6 +118,12 @@ body {
   width: 100%;
   padding: 0 48px 80px;
   min-height: 100svh;
+}
+
+.home-fold {
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
 }
 
 .divider {
@@ -180,7 +186,10 @@ body {
 
 /* ── Projects carousel ──────────────────────── */
 .projects-section {
-  margin-top: 8px;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .projects-title {
@@ -196,6 +205,8 @@ body {
   align-items: center;
   gap: 8px;
   margin-bottom: 20px;
+  flex: 1;
+  min-height: 0;
 }
 
 .carousel-arrow {
@@ -216,6 +227,7 @@ body {
   gap: 12px;
   flex: 1;
   overflow: hidden;
+  height: 100%;
 }
 
 .project-card {
@@ -229,6 +241,7 @@ body {
   justify-content: center;
   color: #bbb;
   font-size: 12px;
+  height: 100%;
 }
 
 /* ── Projets page ───────────────────────────── */
