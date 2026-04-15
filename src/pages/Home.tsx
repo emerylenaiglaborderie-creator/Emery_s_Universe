@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Header from '../components/Header'
 import FrameSection from '../components/FrameSection'
 import ProjectsCarousel from '../components/ProjectsCarousel'
@@ -24,9 +24,9 @@ export default function Home() {
       <Header>
         <nav className="navbar">
           <ul>
-            <li><Link to="/home">Présentation</Link></li>
-            <li><Link to="/projets">Mes projets</Link></li>
-            <li><Link to="/cv">Mon CV</Link></li>
+            <li><NavLink to="/home">Présentation</NavLink></li>
+            <li><NavLink to="/projets">Mes projets</NavLink></li>
+            <li><NavLink to="/cv">Mon CV</NavLink></li>
           </ul>
         </nav>
       </Header>

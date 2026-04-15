@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -106,6 +107,12 @@ body {
   background-color: #888;
 }
 
+.navbar li:has(a.active) {
+  border-color: #1e1e1e;
+  color: #1e1e1e;
+  background-color: #888;
+}
+
 /* ── Home page ──────────────────────────────── */
 .home {
   width: 100%;
@@ -125,21 +132,21 @@ body {
 }
 
 .text-block {
-  background: #D9D9D9;
   border-radius: 10px;
   padding: 18px 22px;
   line-height: 1.65;
-  color: #2C2C2C;
+  color: #D9D9D9;
   text-align: left;
-  font-size: 30px;
+  font-size: 20px;
   margin-bottom: 16px;
+  font-family: 'Special Elite', Arial, Helvetica, sans-serif;
 }
 
 .frame-title {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 50px;
+  font-size: 30px;
   color: #f0f0f0;
   cursor: pointer;
   padding: 12px 0;
@@ -163,19 +170,6 @@ body {
   text-transform: uppercase;
   text-align: left;
   margin: 0 0 10px;
-}
-
-.img-placeholder {
-  background: #2e2e2e;
-  border-radius: 10px;
-  height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #555;
-  font-size: 13px;
-  margin-bottom: 16px;
-  border: 1px dashed #444;
 }
 
 .frame-divider {
