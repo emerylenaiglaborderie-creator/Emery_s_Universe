@@ -817,4 +817,20 @@ body {
 
   .cv-main { display: none; }
   .cv-main--visible { display: flex; }
+
+  /* Home & global */
+  .home,
+  .projets { padding: 0 16px 60px; }
+
+  .chalk-title { font-size: 32px; letter-spacing: 6px; }
+
+  .mascot { width: 90px; }
+
+  .navbar li { font-size: 13px; }
+
+  .home-fold { height: auto; min-height: 100svh; }
+
+  /* Frames */
+  .frame-title { font-size: 20px; letter-spacing: 2px; }
+  .text-block { font-size: 16px; }
 }
