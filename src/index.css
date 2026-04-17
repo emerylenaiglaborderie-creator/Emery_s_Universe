@@ -66,6 +66,37 @@ body {
 }
 .site-header--large .mascot { width: 400px; }
 
+.mascot-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Ajuste top/left pour couvrir les yeux du PNG */
+
+.eye {
+  position: absolute;
+  width: 18%;
+  aspect-ratio: 1;
+  background: white;
+  border-radius: 50%;
+  border: 2px solid #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.eye-left  { top: 37%; left: 32%; }
+.eye-right { top: 37%; left: 52%; }
+
+.pupil {
+  width: 55%;
+  aspect-ratio: 1;
+  background: #333;
+  border-radius: 50%;
+  transition: transform 0.05s linear;
+}
+
 /* ── Navbar ─────────────────────────────────── */
 .navbar {
   width: 100%;
