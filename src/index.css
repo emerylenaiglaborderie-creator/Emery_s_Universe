@@ -169,27 +169,6 @@ body {
 }
 .frame-arrow--open { transform: rotate(90deg); }
 
-.frame-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 50px;
-  color: #f0f0f0;
-  cursor: pointer;
-  padding: 12px 0;
-  user-select: none;
-  font-family: 'Climate Crisis', Arial, Helvetica, sans-serif;
-  letter-spacing: 5px;
-}
-.frame-title:hover { color: #c8c8c8; }
-
-.frame-arrow {
-  font-size: 16px;
-  color: #888;
-  transition: transform 0.2s;
-}
-.frame-arrow--open { transform: rotate(90deg); }
-
 .frame-label {
   font-size: 12px;
   color: #666;
