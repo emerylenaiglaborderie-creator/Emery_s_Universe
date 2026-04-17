@@ -1,4 +1,4 @@
-import mascot from '../assets/triangle.png'
+import mascot from '../assets/triangle-splash.png'
 import type { ReactNode } from 'react'
 import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
