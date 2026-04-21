@@ -2,8 +2,26 @@ import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Header from '../components/Header'
 import ProjectModal from '../components/ProjectModal'
+import RevealItem from '../components/RevealItem'
 import type { Project, Epreuve, Categorie } from '../types/project'
 import fateFactoryThumb from '../assets/fate-factory-thumb.jpg'
+
+function CardImage({ src, alt }: { src?: string; alt: string }) {
+  const [loaded, setLoaded] = useState(false)
+  return (
+    <div className="projet-card-img">
+      {src && !loaded && <div className="skeleton" />}
+      {src && (
+        <img
+          src={src}
+          alt={alt}
+          onLoad={() => setLoaded(true)}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: loaded ? 1 : 0, transition: 'opacity 0.3s' }}
+        />
+      )}
+    </div>
+  )
+}
 
 const PROJECTS: Project[] = [
   {
@@ -113,20 +131,20 @@ export default function Projets() {
         <p className="projets-empty">Aucun projet ne correspond aux filtres sélectionnés.</p>
       ) : (
         <div className="projets-grid">
-          {filtered.map(p => (
-            <div key={p.id} className="projet-card" onClick={() => setSelected(p)}>
-              <div className="projet-card-img">
-                {p.image && <img src={p.image} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
-              </div>
-              <div className="projet-card-body">
-                <div className="projet-card-tags">
-                  {p.epreuve && <span className="projet-tag-epreuve">{p.epreuve}</span>}
-                  <span className="projet-tag-categorie">{p.categorie}</span>
+          {filtered.map((p, i) => (
+            <RevealItem key={p.id} delay={i * 80}>
+              <div className="projet-card" onClick={() => setSelected(p)}>
+                <CardImage src={p.image} alt={p.title} />
+                <div className="projet-card-body">
+                  <div className="projet-card-tags">
+                    {p.epreuve && <span className="projet-tag-epreuve">{p.epreuve}</span>}
+                    <span className="projet-tag-categorie">{p.categorie}</span>
+                  </div>
+                  <h3 className="projet-card-title">{p.title}</h3>
+                  <p className="projet-card-desc">{p.description}</p>
                 </div>
-                <h3 className="projet-card-title">{p.title}</h3>
-                <p className="projet-card-desc">{p.description}</p>
               </div>
-            </div>
+            </RevealItem>
           ))}
         </div>
       )}

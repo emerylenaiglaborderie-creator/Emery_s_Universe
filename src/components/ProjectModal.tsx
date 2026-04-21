@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import type { Project } from '../types/project'
 
 // Ajoute ici les icônes de stack au fur et à mesure que tu les déposes dans assets/
@@ -14,6 +14,12 @@ interface Props {
 }
 
 export default function ProjectModal({ project, onClose }: Props) {
+  const [imgLoaded, setImgLoaded] = useState(false)
+
+  useEffect(() => {
+    setImgLoaded(false)
+  }, [project.id])
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
     document.addEventListener('keydown', onKey)
@@ -27,10 +33,19 @@ export default function ProjectModal({ project, onClose }: Props) {
 
         {/* Image */}
         <div className="modal-img">
-          {project.image
-            ? <img src={project.image} alt={project.title} />
-            : <span>Aperçu à venir</span>
-          }
+          {project.image ? (
+            <>
+              {!imgLoaded && <div className="skeleton" />}
+              <img
+                src={project.image}
+                alt={project.title}
+                onLoad={() => setImgLoaded(true)}
+                style={{ opacity: imgLoaded ? 1 : 0, transition: 'opacity 0.3s', width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </>
+          ) : (
+            <span>Aperçu à venir</span>
+          )}
         </div>
 
         <div className="modal-body">

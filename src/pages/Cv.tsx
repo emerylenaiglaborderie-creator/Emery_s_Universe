@@ -1,6 +1,30 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import Header from '../components/Header'
+
+function TimelineItem({ children, isLast = false, delay = 0 }: { children: React.ReactNode; isLast?: boolean; delay?: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect() } },
+      { threshold: 0.1 }
+    )
+    if (ref.current) obs.observe(ref.current)
+    return () => obs.disconnect()
+  }, [])
+
+  return (
+    <div
+      ref={ref}
+      className={`cv-timeline-item${isLast ? ' cv-timeline-item--last' : ''} reveal${visible ? ' reveal--visible' : ''}`}
+      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+    >
+      {children}
+    </div>
+  )
+}
 
 const SKILLS_MAIN = ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'Python']
 const SKILLS_BASES = ['C#', 'PHP']
@@ -199,7 +223,7 @@ export default function Cv() {
             <h2 className="cv-section-title cv-section-title--main">Diplômes & Formations</h2>
             <div className="cv-timeline">
               {FORMATIONS.map((f, i) => (
-                <div key={i} className="cv-timeline-item">
+                <TimelineItem key={i} isLast={i === FORMATIONS.length - 1} delay={i * 80}>
                   <div className="cv-timeline-dot" />
                   <div className="cv-timeline-content">
                     <span className="cv-timeline-period">{f.period}</span>
@@ -207,7 +231,7 @@ export default function Cv() {
                     <span className="cv-timeline-sub">{f.school}</span>
                     {f.desc && <p className="cv-timeline-desc">{f.desc}</p>}
                   </div>
-                </div>
+                </TimelineItem>
               ))}
             </div>
           </section>
@@ -217,7 +241,7 @@ export default function Cv() {
             <h2 className="cv-section-title cv-section-title--main">Expériences professionnelles</h2>
             <div className="cv-timeline">
               {EXPERIENCES.map((e, i) => (
-                <div key={i} className="cv-timeline-item">
+                <TimelineItem key={i} isLast={i === EXPERIENCES.length - 1} delay={i * 80}>
                   <div className="cv-timeline-dot cv-timeline-dot--exp" />
                   <div className="cv-timeline-content">
                     <span className="cv-timeline-period">{e.period}</span>
@@ -230,7 +254,7 @@ export default function Cv() {
                       ))}
                     </div>
                   </div>
-                </div>
+                </TimelineItem>
               ))}
             </div>
           </section>
@@ -240,7 +264,7 @@ export default function Cv() {
             <h2 className="cv-section-title cv-section-title--main">Projets</h2>
             <div className="cv-timeline">
               {PROJETS.map((p, i) => (
-                <div key={i} className="cv-timeline-item">
+                <TimelineItem key={i} isLast={i === PROJETS.length - 1} delay={i * 80}>
                   <div className="cv-timeline-dot cv-timeline-dot--project" />
                   <div className="cv-timeline-content">
                     <span className="cv-timeline-period">{p.year}</span>
@@ -255,7 +279,7 @@ export default function Cv() {
                       ))}
                     </div>
                   </div>
-                </div>
+                </TimelineItem>
               ))}
             </div>
           </section>

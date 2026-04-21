@@ -32,8 +32,8 @@ export default function ProjectsCarousel() {
         </button>
 
         <div className="carousel-track">
-          {visible.map(p => (
-            <div key={p.id} className="project-card">
+          {visible.map((p, i) => (
+            <div key={p.id} className={`project-card${i === 1 ? ' project-card--focus' : ''}`}>
               {p.image && <img src={p.image} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
             </div>
           ))}
