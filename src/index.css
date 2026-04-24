@@ -1074,7 +1074,10 @@ body::after {
 }
 
 /* ── Responsive ─────────────────────────────── */
-@media (max-width: 700px) {
+@media (max-width: 480px) {
+  .home-page,
+  .projets-page {
+      padding: 0 16px 60px;}
   .cv-page { padding: 0 20px 60px; }
 
   .cv-mobile-tabs { display: flex; }
@@ -1086,4 +1089,34 @@ body::after {
 
   .cv-main { display: none; }
   .cv-main--visible { display: flex; }
+
+  .site-header--large .mascot { width: 200px; }
+  .site-title { font-size: 32px; }
+
+  .projects-grid {grid-template-columns: 1fr;}
+
+  .carousel::-webkit-scrollbar {display: none;}
+  .carousel {scrollbar-width: none;}
+
+  .carousel-arrow {display: none;}
+  .carousel {overflow-x: auto; -webkit-overflow-scrolling: touch; gap: 0;}
+  .carousel-track {flex: none; width: max-content; overflow: visible;}
+  .project-card {width: 72vw; flex: none; height: 180px;}
+  .project-card--focus {transform: none; box-shadow: none;}
+
+  .navbar ul { flex-direction: column; gap: 8px; }
+  .navbar li { margin: 0; font-size: 16px; }
+  .navbar li a { padding: 10px 0; }
+
+  /* Titre */
+  .chalk-title { font-size: 28px; letter-spacing: 6px; }
+  .site-header--large .chalk-title { font-size: 28px; }
+
+  /* Splash */
+  .site-header--large .mascot { width: 160px; }
+  .splash { gap: 16px; }
+
+  /* Filtres projets */
+  .filter-btn-epreuve,
+  .filter-btn-categorie { font-size: 11px; padding: 5px 12px; letter-spacing: 0.5px; }
 }
