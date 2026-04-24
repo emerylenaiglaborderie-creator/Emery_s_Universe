@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import ProjectModal from '../components/ProjectModal'
 import RevealItem from '../components/RevealItem'
 import type { Project, Epreuve, Categorie } from '../types/project'
+
 import fateFactoryThumb from '../assets/fate-factory-thumb.jpg'
 import itsRainingThumb from '../assets/its-raining-thumb.png'
 import imATeapotThumb from '../assets/im-a-teapot.png'
