@@ -5,6 +5,10 @@ import ProjectModal from '../components/ProjectModal'
 import RevealItem from '../components/RevealItem'
 import type { Project, Epreuve, Categorie } from '../types/project'
 import fateFactoryThumb from '../assets/fate-factory-thumb.jpg'
+import itsRainingThumb from '../assets/its-raining-thumb.png'
+import imATeapotThumb from '../assets/im-a-teapot.png'
+import penseBeteThumb from '../assets/pense-bete-thumb.png'
+import GLPIThumb from '../assets/GLPI-thumb.png'
 
 function CardImage({ src, alt }: { src?: string; alt: string }) {
   const [loaded, setLoaded] = useState(false)
@@ -37,36 +41,38 @@ const PROJECTS: Project[] = [
   },
   {
     id: 2,
-    title: 'Projet 2',
-    description: 'Description du projet 2.',
-    epreuve: 'E6',
-    categorie: 'BTS SIO',
-    stack: [],
+    title: 'Its Raining - DEMO',
+    image: itsRainingThumb,
+    description: 'Une démo de jeu vidéo en cours de création. ',
+    categorie: 'Projets Personnels',
+    stack: ['C#, Unity2D'],
     githubUrl: '',
   },
   {
     id: 3,
-    title: 'Projet 3',
-    description: 'Description du projet 3.',
-    epreuve: null,
+    title: 'Im a Teapot',
+    image: imATeapotThumb,
+    description: `Projet de site communautaires d'information et d'échange sur les différentes erreurs HTTP. La partie communautaire est en cours de production.`,
     categorie: 'Projets Personnels',
-    stack: [],
+    stack: ['Typescript','Vue', 'Firebase, Node'],
   },
   {
     id: 4,
-    title: 'Projet 4',
+    title: 'Mini SI - GLPI',
+    image: GLPIThumb,
     description: 'Description du projet 4.',
-    epreuve: null,
+    epreuve: 'E5',
     categorie: 'Projets Professionnels',
-    stack: [],
+    stack: ['GLPI', 'Windows Server'],
   },
   {
     id: 5,
-    title: 'Projet 5',
-    description: 'Description du projet 5.',
-    epreuve: 'E5',
-    categorie: 'Projets Personnels',
-    stack: [],
+    title: 'Pense bête liens',
+    image: penseBeteThumb,
+    description: `Petit projet fait en classe pour s'entrainer à maitriser TypeScript et Vue. Backend en cours de création.`,
+    epreuve: 'E6',
+    categorie: 'BTS SIO',
+    stack: ['TypeScript', 'Vue', 'PostMan'],
   },
 ]
 

@@ -17,10 +17,6 @@ export default function ProjectModal({ project, onClose }: Props) {
   const [imgLoaded, setImgLoaded] = useState(false)
 
   useEffect(() => {
-    setImgLoaded(false)
-  }, [project.id])
-
-  useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
@@ -37,6 +33,7 @@ export default function ProjectModal({ project, onClose }: Props) {
             <>
               {!imgLoaded && <div className="skeleton" />}
               <img
+                key={project.id}
                 src={project.image}
                 alt={project.title}
                 onLoad={() => setImgLoaded(true)}

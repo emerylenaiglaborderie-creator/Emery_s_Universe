@@ -3,32 +3,6 @@
 
 *, *::before, *::after {
   box-sizing: border-box;
-  cursor: none !important;
-}
-
-/* ── Custom cursor ──────────────────────────── */
-.custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 80px;
-  height: 80px;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-200px, -200px);
-  image-rendering: pixelated;
-  will-change: transform;
-}
-.custom-cursor img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-@media (hover: none) {
-  * { cursor: auto !important; }
-  .custom-cursor { display: none; }
 }
 
 /* ── Page enter animation ───────────────────── */
@@ -81,7 +55,7 @@ body::after {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.04;
+  opacity: 0.05;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 180px 180px;
 }
@@ -114,7 +88,7 @@ body::after {
 
 @keyframes twinkle {
   0%, 100% { opacity: 0.05; transform: scale(0.8); }
-  50%       { opacity: 0.45; transform: scale(1.4); }
+  50%       { opacity: 0.85; transform: scale(1.4); }
 }
 
 .press-btn {
