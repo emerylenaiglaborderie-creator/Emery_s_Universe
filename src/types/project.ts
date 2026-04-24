@@ -5,7 +5,7 @@ export interface Project {
   id: number
   title: string
   description: string
-  epreuve: Epreuve | null
+  epreuve?: Epreuve
   categorie: Categorie
   stack: string[]
   githubUrl?: string

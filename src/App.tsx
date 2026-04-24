@@ -3,10 +3,12 @@ import Splash from './pages/Splash'
 import Home from './pages/Home'
 import Projets from './pages/Projets'
 import Cv from './pages/Cv'
+import BackToTop from './components/BackToTop'
 
 export default function App() {
   return (
     <BrowserRouter basename="/Emery_s_Universe/">
+      <BackToTop />
       <Routes>
         <Route path="/" element={<Splash />} />
         <Route path="/home" element={<Home />} />

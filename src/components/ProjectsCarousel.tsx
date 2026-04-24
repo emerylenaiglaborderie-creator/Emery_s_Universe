@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import fateFactoryThumb from '../assets/fate-factory-thumb.jpg'
+import itsRainingThumb from '../assets/its-raining-thumb.png'
+import imATeapotThumb from '../assets/im-a-teapot.png'
+import penseBeteThumb from '../assets/pense-bete-thumb.png'
+import GLPIThumb from '../assets/GLPI-thumb.png'
 
 const PROJECTS = [
-  { id: 1, title: 'Projet 1', image: fateFactoryThumb },
-  { id: 2, title: 'Projet 2' },
-  { id: 3, title: 'Projet 3' },
-  { id: 4, title: 'Projet 4' },
-  { id: 5, title: 'Projet 5' },
+  { id: 1, title: 'Fate Factory', image: fateFactoryThumb },
+  { id: 2, title: 'Its Raining', image: itsRainingThumb },
+  { id: 3, title: 'Im a Teapot', image: imATeapotThumb },
+  { id: 4, title: 'Pense Bete', image: penseBeteThumb },
+  { id: 5, title: 'SI - GLPI', image: GLPIThumb },
 ]
 
 const VISIBLE = 3
@@ -32,8 +36,8 @@ export default function ProjectsCarousel() {
         </button>
 
         <div className="carousel-track">
-          {visible.map(p => (
-            <div key={p.id} className="project-card">
+          {visible.map((p, i) => (
+            <div key={p.id} className={`project-card${i === 1 ? ' project-card--focus' : ''}`}>
               {p.image && <img src={p.image} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
             </div>
           ))}

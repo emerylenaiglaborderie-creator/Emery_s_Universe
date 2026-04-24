@@ -2,8 +2,31 @@ import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Header from '../components/Header'
 import ProjectModal from '../components/ProjectModal'
+import RevealItem from '../components/RevealItem'
 import type { Project, Epreuve, Categorie } from '../types/project'
+
 import fateFactoryThumb from '../assets/fate-factory-thumb.jpg'
+import itsRainingThumb from '../assets/its-raining-thumb.png'
+import imATeapotThumb from '../assets/im-a-teapot.png'
+import penseBeteThumb from '../assets/pense-bete-thumb.png'
+import GLPIThumb from '../assets/GLPI-thumb.png'
+
+function CardImage({ src, alt }: { src?: string; alt: string }) {
+  const [loaded, setLoaded] = useState(false)
+  return (
+    <div className="projet-card-img">
+      {src && !loaded && <div className="skeleton" />}
+      {src && (
+        <img
+          src={src}
+          alt={alt}
+          onLoad={() => setLoaded(true)}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: loaded ? 1 : 0, transition: 'opacity 0.3s' }}
+        />
+      )}
+    </div>
+  )
+}
 
 const PROJECTS: Project[] = [
   {
@@ -19,36 +42,38 @@ const PROJECTS: Project[] = [
   },
   {
     id: 2,
-    title: 'Projet 2',
-    description: 'Description du projet 2.',
-    epreuve: 'E6',
-    categorie: 'BTS SIO',
-    stack: [],
+    title: 'Its Raining - DEMO',
+    image: itsRainingThumb,
+    description: 'Une démo de jeu vidéo en cours de création. ',
+    categorie: 'Projets Personnels',
+    stack: ['C#, Unity2D'],
     githubUrl: '',
   },
   {
     id: 3,
-    title: 'Projet 3',
-    description: 'Description du projet 3.',
-    epreuve: null,
+    title: 'Im a Teapot',
+    image: imATeapotThumb,
+    description: `Projet de site communautaires d'information et d'échange sur les différentes erreurs HTTP. La partie communautaire est en cours de production.`,
     categorie: 'Projets Personnels',
-    stack: [],
+    stack: ['Typescript','Vue', 'Firebase, Node'],
   },
   {
     id: 4,
-    title: 'Projet 4',
+    title: 'Mini SI - GLPI',
+    image: GLPIThumb,
     description: 'Description du projet 4.',
-    epreuve: null,
+    epreuve: 'E5',
     categorie: 'Projets Professionnels',
-    stack: [],
+    stack: ['GLPI', 'Windows Server'],
   },
   {
     id: 5,
-    title: 'Projet 5',
-    description: 'Description du projet 5.',
-    epreuve: 'E5',
-    categorie: 'Projets Personnels',
-    stack: [],
+    title: 'Pense bête liens',
+    image: penseBeteThumb,
+    description: `Petit projet fait en classe pour s'entrainer à maitriser TypeScript et Vue. Backend en cours de création.`,
+    epreuve: 'E6',
+    categorie: 'BTS SIO',
+    stack: ['TypeScript', 'Vue', 'PostMan'],
   },
 ]
 
@@ -113,20 +138,20 @@ export default function Projets() {
         <p className="projets-empty">Aucun projet ne correspond aux filtres sélectionnés.</p>
       ) : (
         <div className="projets-grid">
-          {filtered.map(p => (
-            <div key={p.id} className="projet-card" onClick={() => setSelected(p)}>
-              <div className="projet-card-img">
-                {p.image && <img src={p.image} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
-              </div>
-              <div className="projet-card-body">
-                <div className="projet-card-tags">
-                  {p.epreuve && <span className="projet-tag-epreuve">{p.epreuve}</span>}
-                  <span className="projet-tag-categorie">{p.categorie}</span>
+          {filtered.map((p, i) => (
+            <RevealItem key={p.id} delay={i * 80}>
+              <div className="projet-card" onClick={() => setSelected(p)}>
+                <CardImage src={p.image} alt={p.title} />
+                <div className="projet-card-body">
+                  <div className="projet-card-tags">
+                    {p.epreuve && <span className="projet-tag-epreuve">{p.epreuve}</span>}
+                    <span className="projet-tag-categorie">{p.categorie}</span>
+                  </div>
+                  <h3 className="projet-card-title">{p.title}</h3>
+                  <p className="projet-card-desc">{p.description}</p>
                 </div>
-                <h3 className="projet-card-title">{p.title}</h3>
-                <p className="projet-card-desc">{p.description}</p>
               </div>
-            </div>
+            </RevealItem>
           ))}
         </div>
       )}

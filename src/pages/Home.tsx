@@ -2,6 +2,8 @@ import { NavLink } from 'react-router-dom'
 import Header from '../components/Header'
 import FrameSection from '../components/FrameSection'
 import ProjectsCarousel from '../components/ProjectsCarousel'
+import RevealItem from '../components/RevealItem'
+import cvPicture from '../assets/cvPicture.jpeg'
 
 const FRAMES = [
   {
@@ -34,6 +36,21 @@ export default function Home() {
         <hr className="divider" />
         <ProjectsCarousel />
       </div>
+      <hr className="divider" />
+
+      <RevealItem>
+        <section className="about-section">
+          <div className="about-photo-wrapper">
+            <img src={cvPicture} alt="Emery" className="about-photo" />
+          </div>
+          <div className="about-text">
+            <p className="about-name">Emery</p>
+            <p className="about-role">Développeuse web &amp; créative</p>
+            <p className="about-location">Rennes · BTS SIO SLAM</p>
+          </div>
+        </section>
+      </RevealItem>
+
       <hr className="divider" />
       {FRAMES.map((f, i) => (
         <FrameSection

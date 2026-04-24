@@ -8,6 +8,7 @@ interface FrameSectionProps {
 
 export default function FrameSection({ title, description, last = false }: FrameSectionProps) {
   const [displayedText, setDisplayedText] = useState('')
+  const [visible, setVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -17,6 +18,7 @@ export default function FrameSection({ title, description, last = false }: Frame
       ([entry]) => {
         if (entry.isIntersecting) {
           observer.disconnect()
+          setVisible(true)
           let i = 0
           interval = setInterval(() => {
             setDisplayedText(description.slice(0, i + 1))
@@ -37,7 +39,7 @@ export default function FrameSection({ title, description, last = false }: Frame
   }, [description])
 
   return (
-    <section className="frame-section" ref={sectionRef}>
+    <section className={`frame-section reveal${visible ? ' reveal--visible' : ''}`} ref={sectionRef}>
       <div className="frame-title">
         <span>{title}</span>
       </div>
