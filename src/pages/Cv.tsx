@@ -93,7 +93,7 @@ const PROJETS = [
     year: '2026',
     title: 'Slay Your Enemies',
     desc: 'Site de révisions s\'inspirant des jeux vidéo rétro. V0 en cours de développement.',
-    tags: [],
+    tags: ['TypeScript', 'React', 'Rust', 'Axum'],
     wip: true,
   },
   {

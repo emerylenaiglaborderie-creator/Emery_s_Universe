@@ -14,7 +14,7 @@ export const PROJECTS: Project[] = [
     id: 6,
     title: 'PowerRig',
     image: powerRigThumb,
-    description: `Application de calcul de puissance électrique dans le domaine de l'audiovisuel. J'y suis lead dev et je m'occupe du développement frontend.`,
+    description: `Application de calcul de puissance électrique dans le domaine de l'audiovisuel. J'y suis lead dev et je m'occupe du développement frontend. Projet confidentiel : la stack et le code ne sont pas publics.`,
     categorie: 'Projets Professionnels',
     stack: [],
   },
@@ -24,7 +24,8 @@ export const PROJECTS: Project[] = [
     image: slayYourEnemiesThumb,
     description: `Site de révisions s'inspirant des jeux vidéo rétro : cours, fiches, échéances, et un dragon à faire grandir en révisant régulièrement. V0 en cours de développement.`,
     categorie: 'Projets Personnels',
-    stack: [],
+    stack: ['TypeScript', 'React', 'Rust', 'Axum'],
+    githubUrl: 'https://github.com/emerylenaiglaborderie-creator/slay-your-enemies-bts',
   },
   {
     id: 1,

@@ -16,6 +16,9 @@ export default function Footer() {
         <a href="https://github.com/emerylenaiglaborderie-creator" target="_blank" rel="noreferrer" className="footer-link">
           GitHub
         </a>
+        <a href="https://www.linkedin.com/in/emery-lénaïg-laborderie-8a11aa324/" target="_blank" rel="noreferrer" className="footer-link">
+          LinkedIn
+        </a>
       </div>
     </footer>
   )
