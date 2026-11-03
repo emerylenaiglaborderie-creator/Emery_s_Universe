@@ -5,6 +5,7 @@ import Projets from './pages/Projets'
 import Cv from './pages/Cv'
 import BackToTop from './components/BackToTop'
 import ScrollToTop from './components/ScrollToTop'
+import Footer from './components/Footer'
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/cv" element={<Cv />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }

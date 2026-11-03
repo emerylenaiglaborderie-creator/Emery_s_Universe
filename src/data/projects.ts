@@ -5,9 +5,27 @@ import itsRainingThumb from '../assets/its-raining-thumb.webp'
 import imATeapotThumb from '../assets/im-a-teapot.webp'
 import penseBeteThumb from '../assets/pense-bete-thumb.webp'
 import GLPIThumb from '../assets/GLPI-thumb.webp'
+import powerRigThumb from '../assets/powerrig-thumb.webp'
+import slayYourEnemiesThumb from '../assets/slay-your-enemies-thumb.webp'
 
 // Source unique des projets : utilisée par la page Projets et le carrousel de l'accueil
 export const PROJECTS: Project[] = [
+  {
+    id: 6,
+    title: 'PowerRig',
+    image: powerRigThumb,
+    description: `Application de calcul de puissance électrique dans le domaine de l'audiovisuel. J'y suis lead dev et je m'occupe du développement frontend.`,
+    categorie: 'Projets Professionnels',
+    stack: [],
+  },
+  {
+    id: 7,
+    title: 'Slay Your Enemies',
+    image: slayYourEnemiesThumb,
+    description: `Site de révisions s'inspirant des jeux vidéo rétro : cours, fiches, échéances, et un dragon à faire grandir en révisant régulièrement. V0 en cours de développement.`,
+    categorie: 'Projets Personnels',
+    stack: [],
+  },
   {
     id: 1,
     title: 'Fate Factory',
