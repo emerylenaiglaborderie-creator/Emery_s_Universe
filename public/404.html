@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Emery's Universe</title>
+    <!--
+      GitHub Pages ne connaît pas les routes de l'app (/projets, /cv...) et sert cette page.
+      On mémorise l'URL demandée puis on renvoie vers index.html, qui la restaure.
+    -->
+    <script>
+      sessionStorage.setItem('spa-redirect', location.pathname + location.search + location.hash)
+      location.replace('/Emery_s_Universe/')
+    </script>
+  </head>
+  <body></body>
+</html>

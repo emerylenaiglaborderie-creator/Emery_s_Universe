@@ -19,12 +19,16 @@ export default function FrameSection({ title, description, last = false }: Frame
         if (entry.isIntersecting) {
           observer.disconnect()
           setVisible(true)
+          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            setDisplayedText(description)
+            return
+          }
           let i = 0
           interval = setInterval(() => {
-            setDisplayedText(description.slice(0, i + 1))
-            i++
+            i += 2
+            setDisplayedText(description.slice(0, i))
             if (i >= description.length) clearInterval(interval)
-          }, 10)
+          }, 12)
         }
       },
       { threshold: 0.2 }
@@ -40,10 +44,12 @@ export default function FrameSection({ title, description, last = false }: Frame
 
   return (
     <section className={`frame-section reveal${visible ? ' reveal--visible' : ''}`} ref={sectionRef}>
-      <div className="frame-title">
-        <span>{title}</span>
+      <h2 className="frame-title">{title}</h2>
+      {/* Le texte complet réserve la place (pas de saut de mise en page) et reste lisible par les lecteurs d'écran */}
+      <div className="text-block">
+        <p className="text-block-full">{description}</p>
+        <p className="text-block-typed" aria-hidden>{displayedText}</p>
       </div>
-      <div className="text-block">{displayedText}</div>
       {!last && <hr className="frame-divider" />}
     </section>
   )

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import type { Project } from '../types/project'
 
@@ -16,32 +16,55 @@ interface Props {
 
 export default function ProjectModal({ project, onClose }: Props) {
   const [imgLoaded, setImgLoaded] = useState(false)
+  const modalRef = useRef<HTMLDivElement>(null)
+  const closeRef = useRef<HTMLButtonElement>(null)
+  const titleId = `modal-title-${project.id}`
 
+  // Échap pour fermer + focus piégé dans la modale
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { onClose(); return }
+      if (e.key !== 'Tab' || !modalRef.current) return
+      const focusables = modalRef.current.querySelectorAll<HTMLElement>('a[href], button, iframe')
+      const first = focusables[0]
+      const last = focusables[focusables.length - 1]
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus() }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus() }
+    }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
   }, [onClose])
 
+  // Bloque le scroll de la page, place le focus dans la modale puis le rend à l'élément d'origine
   useEffect(() => {
+    const previouslyFocused = document.activeElement as HTMLElement | null
     const scrollY = window.scrollY
     document.body.style.overflow = 'hidden'
     document.body.style.position = 'fixed'
     document.body.style.top = `-${scrollY}px`
     document.body.style.width = '100%'
+    closeRef.current?.focus()
     return () => {
       document.body.style.overflow = ''
       document.body.style.position = ''
       document.body.style.top = ''
       document.body.style.width = ''
       window.scrollTo(0, scrollY)
+      previouslyFocused?.focus()
     }
   }, [])
 
   return createPortal(
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal" onClick={e => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose} aria-label="Fermer">✕</button>
+      <div
+        className="modal"
+        ref={modalRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        onClick={e => e.stopPropagation()}
+      >
+        <button className="modal-close" ref={closeRef} onClick={onClose} aria-label="Fermer">✕</button>
 
         {/* Image */}
         <div className="modal-img">
@@ -51,9 +74,11 @@ export default function ProjectModal({ project, onClose }: Props) {
               <img
                 key={project.id}
                 src={project.image}
-                alt={project.title}
+                alt=""
+                decoding="async"
+                ref={img => { if (img?.complete) setImgLoaded(true) }}
                 onLoad={() => setImgLoaded(true)}
-                style={{ opacity: imgLoaded ? 1 : 0, transition: 'opacity 0.3s', width: '100%', height: '100%', objectFit: 'cover' }}
+                className={imgLoaded ? 'is-loaded' : undefined}
               />
             </>
           ) : (
@@ -62,27 +87,27 @@ export default function ProjectModal({ project, onClose }: Props) {
         </div>
 
         <div className="modal-body">
-          {/* En-tête : titre + lien GitHub */}
+          {/* En-tête : titre + liens */}
           <div className="modal-header">
-            <h2 className="modal-title">{project.title}</h2>
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="modal-github"
-                aria-label="Voir sur GitHub"
-              >
-                {/* Remplace par <img src={githubIcon} /> quand tu auras assets/github.svg */}
-                <span className="modal-github-placeholder">GitHub</span>
-              </a>
-            )}
+            <h2 className="modal-title" id={titleId}>{project.title}</h2>
+            <div className="modal-links">
+              {project.demoUrl && (
+                <a href={project.demoUrl} target="_blank" rel="noreferrer" className="modal-link">
+                  Voir la démo
+                </a>
+              )}
+              {project.githubUrl && (
+                <a href={project.githubUrl} target="_blank" rel="noreferrer" className="modal-link">
+                  GitHub
+                </a>
+              )}
+            </div>
           </div>
 
           {/* Tags */}
           <div className="modal-tags">
-            {project.epreuve && <span className="projet-tag">{project.epreuve}</span>}
-            <span className="projet-tag">{project.categorie}</span>
+            {project.epreuve && <span className="projet-tag-epreuve">{project.epreuve}</span>}
+            <span className="projet-tag-categorie">{project.categorie}</span>
           </div>
 
           {/* Description */}
@@ -92,16 +117,16 @@ export default function ProjectModal({ project, onClose }: Props) {
           {project.stack.length > 0 && (
             <div className="modal-stack">
               <h3 className="modal-section-title">Stack technique</h3>
-              <div className="modal-stack-icons">
+              <ul className="modal-stack-icons">
                 {project.stack.map(tech => (
-                  <div key={tech} className="stack-icon" title={tech}>
+                  <li key={tech} className="stack-icon" title={tech}>
                     {STACK_ICONS[tech.toLowerCase()]
                       ? <img src={STACK_ICONS[tech.toLowerCase()]} alt={tech} />
                       : <span className="stack-icon-fallback">{tech}</span>
                     }
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           )}
 

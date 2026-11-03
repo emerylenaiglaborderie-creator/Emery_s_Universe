@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
-import mascot from '../assets/triangle-splash.png'
+import mascot from '../assets/triangle-splash.webp'
+import { useTrackingEyes } from '../hooks/useTrackingEyes'
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false)
   const leftEyeRef = useRef<HTMLDivElement>(null)
   const rightEyeRef = useRef<HTMLDivElement>(null)
+  useTrackingEyes([leftEyeRef, rightEyeRef], 2)
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 300)
@@ -12,31 +14,20 @@ export default function BackToTop() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      for (const ref of [leftEyeRef, rightEyeRef]) {
-        if (!ref.current) continue
-        const rect = ref.current.getBoundingClientRect()
-        const cx = rect.left + rect.width / 2
-        const cy = rect.top + rect.height / 2
-        const angle = Math.atan2(e.clientY - cy, e.clientX - cx)
-        const d = 2
-        ref.current.querySelector<HTMLDivElement>('.btt-pupil')!.style.transform =
-          `translate(${Math.cos(angle) * d}px, ${Math.sin(angle) * d}px)`
-      }
-    }
-    window.addEventListener('mousemove', onMove)
-    return () => window.removeEventListener('mousemove', onMove)
-  }, [])
+  const scrollTop = () => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' })
+  }
 
   return (
     <button
       className={`back-to-top${visible ? ' back-to-top--visible' : ''}`}
-      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      onClick={scrollTop}
       aria-label="Retour en haut"
+      tabIndex={visible ? 0 : -1}
     >
       <div className="btt-mascot-container">
-        <img src={mascot} alt="" className="btt-mascot" />
+        <img src={mascot} alt="" className="btt-mascot" width={48} height={48} />
         <div className="btt-eye btt-eye-left" ref={leftEyeRef}>
           <div className="btt-pupil" />
         </div>

@@ -9,6 +9,7 @@ export interface Project {
   categorie: Categorie
   stack: string[]
   githubUrl?: string
+  demoUrl?: string
   image?: string
   pdfUrl?: string
 }
