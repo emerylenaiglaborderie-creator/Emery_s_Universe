@@ -1,17 +1,6 @@
 import { useState } from 'react'
-import fateFactoryThumb from '../assets/fate-factory-thumb.jpg'
-import itsRainingThumb from '../assets/its-raining-thumb.png'
-import imATeapotThumb from '../assets/im-a-teapot.png'
-import penseBeteThumb from '../assets/pense-bete-thumb.png'
-import GLPIThumb from '../assets/GLPI-thumb.png'
-
-const PROJECTS = [
-  { id: 1, title: 'Fate Factory', image: fateFactoryThumb },
-  { id: 2, title: 'Its Raining', image: itsRainingThumb },
-  { id: 3, title: 'Im a Teapot', image: imATeapotThumb },
-  { id: 4, title: 'Pense Bete', image: penseBeteThumb },
-  { id: 5, title: 'SI - GLPI', image: GLPIThumb },
-]
+import { Link } from 'react-router-dom'
+import { PROJECTS } from '../data/projects'
 
 const VISIBLE = 3
 
@@ -20,10 +9,9 @@ export default function ProjectsCarousel() {
 
   const canPrev = start > 0
   const canNext = start + VISIBLE < PROJECTS.length
-  const visible = PROJECTS.slice(start, start + VISIBLE)
 
   return (
-    <section className="projects-section">
+    <section className="projects-section" aria-label="Aperçu des projets">
 
       <div className="carousel">
         <button
@@ -35,12 +23,25 @@ export default function ProjectsCarousel() {
           &#9664;
         </button>
 
-        <div className="carousel-track">
-          {visible.map((p, i) => (
-            <div key={p.id} className={`project-card${i === 1 ? ' project-card--focus' : ''}`}>
-              {p.image && <img src={p.image} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
-            </div>
-          ))}
+        <div className="carousel-viewport">
+          <ul className="carousel-track" style={{ '--start': start } as React.CSSProperties}>
+            {PROJECTS.map((p, i) => (
+              <li
+                key={p.id}
+                className={`project-card${i === start + 1 ? ' project-card--focus' : ''}`}
+                aria-hidden={i < start || i >= start + VISIBLE ? true : undefined}
+              >
+                <Link
+                  to={`/projets?projet=${p.id}`}
+                  className="project-card-link"
+                  tabIndex={i < start || i >= start + VISIBLE ? -1 : undefined}
+                >
+                  {p.image && <img src={p.image} alt="" loading={i < VISIBLE ? 'eager' : 'lazy'} decoding="async" />}
+                  <span className="project-card-title">{p.title}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <button

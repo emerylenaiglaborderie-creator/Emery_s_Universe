@@ -1,73 +1,40 @@
-# React + TypeScript + Vite
+# Emery's Universe
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfolio d'Emery — développeuse web, BTS SIO option SLAM.
 
-Currently, two official plugins are available:
+👉 **En ligne :** https://emerylenaiglaborderie-creator.github.io/Emery_s_Universe/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+React 19 · TypeScript · Vite · React Router — déployé sur GitHub Pages via GitHub Actions.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Lancer en local
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev       # serveur de développement
+npm run build     # build de production dans dist/
+npm run preview   # prévisualiser le build
+npm run lint
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Structure
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+  pages/        Splash, Home (présentation), Projets, Cv
+  components/   Header, Navbar, ProjectsCarousel, ProjectModal, ...
+  data/         projects.ts — liste des projets (page Projets + carrousel)
+  hooks/        useTrackingEyes — les yeux de la mascotte qui suivent la souris
+  assets/       images (WebP)
+public/
+  404.html      redirection pour que les URLs /projets, /cv fonctionnent sur GitHub Pages
+```
+
+## Ajouter un projet
+
+1. Déposer la miniature dans `src/assets/` (WebP, ~1280px de large max) :
+   `cwebp -q 80 -resize 1280 0 image.png -o image.webp`
+2. L'importer et ajouter une entrée dans `src/data/projects.ts`.
+
+Un projet s'ouvre directement via `/projets?projet=<id>`.

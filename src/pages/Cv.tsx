@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
 import Header from '../components/Header'
+import Navbar from '../components/Navbar'
 
 function TimelineItem({ children, isLast = false, delay = 0 }: { children: React.ReactNode; isLast?: boolean; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -27,8 +27,8 @@ function TimelineItem({ children, isLast = false, delay = 0 }: { children: React
 }
 
 const SKILLS_MAIN = ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'Python']
-const SKILLS_BASES = ['C#', 'PHP']
-const SKILLS_TOOLS = ['React', 'VSCode', 'WordPress', 'Git', 'Firebase']
+const SKILLS_BASES = ['PHP', 'Java', 'Rust', 'LotusScript', 'C#']
+const SKILLS_TOOLS = ['React', 'HCL Domino', 'Git', 'VSCode', 'WordPress', 'Firebase']
 
 const SOFT_SKILLS = ['Rigoureuse', 'Curieuse', 'Polyvalente', 'Sens de la communication']
 
@@ -42,7 +42,7 @@ const FORMATIONS = [
     period: '2025 – 2027',
     title: 'BTS SIO option SLAM',
     school: 'My Digital School — Rennes',
-    desc: 'Solutions Logicielles et Applications Métiers. Recherche alternance 1 semaine / 2 pour 2026-2027.',
+    desc: 'Solutions Logicielles et Applications Métiers. En alternance chez Orange Business.',
   },
   {
     period: '2024 – Aujourd\'hui',
@@ -58,13 +58,26 @@ const FORMATIONS = [
   },
 ]
 
-const EXPERIENCES = [
+const EXPERIENCES: { period: string; title: string; company: string; desc: string; tags?: string[] }[] = [
+  {
+    period: '2026 – Aujourd\'hui',
+    title: 'Lead Dev',
+    company: 'PowerRig',
+    desc: 'Développement frontend d\'une application de calcul de puissance électrique dans le domaine de l\'audiovisuel.',
+  },
+  {
+    period: 'Septembre 2026 – Juillet 2027',
+    title: 'Spécialiste logiciel (alternance)',
+    company: 'Orange Business — Cesson-Sévigné',
+    desc: 'Gestion de projets client, de l\'expression des besoins au développement, jusqu\'à la mise en production et la maintenance.',
+    tags: ['LotusScript', 'HCL Domino'],
+  },
   {
     period: 'Mars – Juillet 2026',
     title: 'Stagiaire développeuse',
     company: 'TomExplore — Vannes',
-    desc: 'Aide à la conception d\'une API. Stack : React, TypeScript, Vite, Firebase, Docker.',
-    tags: ['React', 'TypeScript', 'Firebase', 'Docker'],
+    desc: 'Aide à la conception d\'une API et conception d\'une nouvelle fonctionnalité.',
+    tags: ['React', 'TypeScript', 'Vite', 'Firebase', 'Docker'],
   },
   {
     period: 'Été 2023',
@@ -78,10 +91,17 @@ const EXPERIENCES = [
 const PROJETS = [
   {
     year: '2026',
-    title: 'Site Portfolio V2',
-    desc: 'En cours de développement — React, TypeScript, Vite.',
-    tags: ['React', 'TypeScript', 'Vite'],
+    title: 'Slay Your Enemies',
+    desc: 'Site de révisions s\'inspirant des jeux vidéo rétro. V0 en cours de développement.',
+    tags: [],
     wip: true,
+  },
+  {
+    year: '2026',
+    title: 'Site Portfolio V2',
+    desc: 'Le site que vous visitez.',
+    tags: ['React', 'TypeScript', 'Vite'],
+    wip: false,
   },
   {
     year: '2025',
@@ -107,13 +127,7 @@ export default function Cv() {
   return (
     <div className="cv-page">
       <Header>
-        <nav className="navbar">
-          <ul>
-            <li><NavLink to="/home">Présentation</NavLink></li>
-            <li><NavLink to="/projets">Mes projets</NavLink></li>
-            <li><NavLink to="/cv">Mon CV</NavLink></li>
-          </ul>
-        </nav>
+        <Navbar />
       </Header>
 
       <hr className="divider" />
@@ -122,12 +136,14 @@ export default function Cv() {
       <div className="cv-mobile-tabs">
         <button
           className={`cv-tab-btn${mobileTab === 'profil' ? ' cv-tab-btn--active' : ''}`}
+          aria-pressed={mobileTab === 'profil'}
           onClick={() => setMobileTab('profil')}
         >
           Profil
         </button>
         <button
           className={`cv-tab-btn${mobileTab === 'parcours' ? ' cv-tab-btn--active' : ''}`}
+          aria-pressed={mobileTab === 'parcours'}
           onClick={() => setMobileTab('parcours')}
         >
           Parcours
@@ -187,7 +203,7 @@ export default function Cv() {
           <section className="cv-section">
             <h2 className="cv-section-title">Intérêts</h2>
             <ul className="cv-list">
-              <li>Codage créatif — démo de jeu vidéo en cours</li>
+              <li>Codage créatif : projets personnels, démo de jeu vidéo en cours</li>
               <li>Arts : Théâtre, musique, écriture</li>
             </ul>
           </section>
@@ -197,6 +213,11 @@ export default function Cv() {
             <ul className="cv-list">
               <li>Rennes</li>
               <li>Permis B, véhiculée</li>
+              <li>
+                <a href="https://github.com/emerylenaiglaborderie-creator" target="_blank" rel="noreferrer" className="cv-link">
+                  GitHub
+                </a>
+              </li>
             </ul>
           </section>
 
@@ -209,12 +230,13 @@ export default function Cv() {
           <div className="cv-accroche">
             <p>
               <strong>Développeuse web motivée</strong>, orientée projets, avec une forte envie d'apprendre
-              et de contribuer à des applications modernes et performantes.
+              et de contribuer au développement et à la maintenance d'applications métier modernes.
             </p>
             <p>
-              En formation <strong>BTS SIO option SLAM</strong> à My Digital School, je recherche une{' '}
-              <strong>alternance</strong> en développement web (front-end ou/et back-end) sur{' '}
-              <strong>Rennes</strong> ou Vannes — rythme 1 semaine / 2 pour 2026-2027.
+              En formation <strong>BTS SIO option SLAM</strong> à My Digital School, je suis actuellement en{' '}
+              <strong>alternance</strong> en tant que <strong>spécialiste logiciel</strong> chez{' '}
+              <strong>Orange Business</strong> à Rennes, avec pour perspective un Bachelor développeur web,
+              puis une école d'ingénieurs.
             </p>
           </div>
 
@@ -248,11 +270,13 @@ export default function Cv() {
                     <strong className="cv-timeline-title">{e.title}</strong>
                     <span className="cv-timeline-sub">{e.company}</span>
                     <p className="cv-timeline-desc">{e.desc}</p>
-                    <div className="cv-tags" style={{ marginTop: 6 }}>
-                      {e.tags.map(t => (
-                        <span key={t} className="cv-tag cv-tag--tool">{t}</span>
-                      ))}
-                    </div>
+                    {e.tags && (
+                      <div className="cv-tags" style={{ marginTop: 6 }}>
+                        {e.tags.map(t => (
+                          <span key={t} className="cv-tag cv-tag--tool">{t}</span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </TimelineItem>
               ))}
@@ -273,11 +297,13 @@ export default function Cv() {
                       {p.wip && <span className="cv-wip-badge">En cours</span>}
                     </strong>
                     {p.desc && <p className="cv-timeline-desc">{p.desc}</p>}
-                    <div className="cv-tags" style={{ marginTop: 6 }}>
-                      {p.tags.map(t => (
-                        <span key={t} className="cv-tag cv-tag--tool">{t}</span>
-                      ))}
-                    </div>
+                    {p.tags.length > 0 && (
+                      <div className="cv-tags" style={{ marginTop: 6 }}>
+                        {p.tags.map(t => (
+                          <span key={t} className="cv-tag cv-tag--tool">{t}</span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </TimelineItem>
               ))}
