@@ -67,7 +67,6 @@ export const PROJECTS: Project[] = [
     title: 'Pense bête liens',
     image: penseBeteThumb,
     description: `Petit projet fait en classe pour s'entrainer à maitriser TypeScript et Vue. Backend en cours de création.`,
-    epreuve: 'E6',
     categorie: 'BTS SIO',
     stack: ['TypeScript', 'Vue', 'PostMan'],
   },
